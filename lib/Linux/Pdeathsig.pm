@@ -18,13 +18,15 @@ our @ISA = qw(Exporter);
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
 our %EXPORT_TAGS = ( 'all' => [ qw(
-	
+	set_pdeathsig
+    get_pdeathsig
 ) ] );
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw(
-	
+	set_pdeathsig
+    get_pdeathsig
 );
 
 our $VERSION = '0.00_01';
@@ -58,6 +60,25 @@ require XSLoader;
 XSLoader::load('Linux::Pdeathsig', $XS_VERSION);
 
 # Preloaded methods go here.
+
+sub set_pdeathsig {
+    my $signal = shift;
+    croak 'no signal defined for set_pdeathsig' if !defined $signal;
+
+    my $ret = syscall(&SYS_prctl,&PR_SET_PDEATHSIG,$signal); 
+    if ($ret == -1 || $ret == &EINVAL) {
+        croak 'set_pdeathsig: ' . $!;
+    }
+    return $ret;
+}
+
+sub get_pdeathsig {
+    my $ret = syscall(&SYS_prctl,&PR_GET_PDEATHSIG);
+    if ($ret == -1) {
+        croak 'get_pdeathsig: ' . $!;
+    }
+    return $ret;
+}
 
 # Autoload methods go after =cut, and are processed by the autosplit program.
 
