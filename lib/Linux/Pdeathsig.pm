@@ -29,7 +29,7 @@ our @EXPORT = qw(
     get_pdeathsig
 );
 
-our $VERSION = '0.00_01';
+our $VERSION = '0.00_02';
 our $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;  # see L<perlmodstyle>
 
@@ -97,7 +97,7 @@ prctl(2) Linux man page.
 
 =head1 AUTHOR
 
-Eric Clark, E<lt>eclark@gsc.wustl.eduE<gt>
+Eric Clark, E<lt>zerohp@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
