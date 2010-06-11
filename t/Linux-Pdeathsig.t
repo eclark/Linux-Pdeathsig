@@ -5,7 +5,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 BEGIN { use_ok('Linux::Pdeathsig') };
 
 #########################
@@ -15,5 +15,17 @@ BEGIN { use_ok('Linux::Pdeathsig') };
 
 my $rv = set_pdeathsig(10);
 ok(defined $rv && $rv == 0,'set_pdeathsig succeeded');
-ok(get_pdeathsig() == 10,'get_pdeathsig returned 10');
+is(get_pdeathsig(), 10,'get_pdeathsig returned 10');
 
+sub invalid_set_pdeathsig {
+    eval {
+        set_pdeathsig(-20);
+    };
+    if ($@) {
+        return $@;
+    } else {
+        return;
+    }
+}
+
+ok(invalid_set_pdeathsig() =~ /^set_pdeathsig failed: Invalid argument/, 'invalid set_pdeathsig died');
