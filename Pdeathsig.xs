@@ -26,17 +26,14 @@ prpl_set_pdeathsig(signum)
   OUTPUT:
     RETVAL 
 
-SV *
+int
 prpl_get_pdeathsig()
   INIT:
     int rv;
-    int signum;
     char *errmsg;
   CODE:
-    rv = prctl(PR_GET_PDEATHSIG,&signum);
-    if (rv == 0) {
-        RETVAL = newSVnv(signum); 
-    } else {
+    rv = prctl(PR_GET_PDEATHSIG,&RETVAL);
+    if (rv == -1) {
         errmsg = strerror(errno);
         croak("get_pdeathsig failed: %s", errmsg);
     }
