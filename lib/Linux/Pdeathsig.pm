@@ -65,18 +65,17 @@ XSLoader::load('Linux::Pdeathsig', $XS_VERSION);
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
-Linux::Pdeathsig - Perl interface to set/get signal on parent death 
+Linux::Pdeathsig - Perl interface to request a signal on parent death 
 
 =head1 SYNOPSIS
 
   use Linux::Pdeathsig;
 
   set_pdeathsig(9);
-  # now you'll get SIGKILL when the parent process ends
+  # now you will get SIGKILL when the parent process ends
 
   my $v = &get_pdeathsig;
   # get the signal that will be sent when the parent process ends
@@ -88,7 +87,7 @@ the linux kernel will send when the parent process dies.  get_pdeathsig
 returns 0 when no signal has been set.  set_pdeathsig(0) will clear the
 setting.  Both functions croak on error.
 
-=head2 EXPORT
+=head1 EXPORTS
 
 set_pdeathsig, get_pdeathsig by default.
 
