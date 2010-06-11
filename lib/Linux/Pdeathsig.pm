@@ -69,37 +69,32 @@ __END__
 
 =head1 NAME
 
-Linux::Pdeathsig - Perl extension for blah blah blah
+Linux::Pdeathsig - Perl interface to set/get signal on parent death 
 
 =head1 SYNOPSIS
 
   use Linux::Pdeathsig;
-  blah blah blah
+
+  set_pdeathsig(9);
+  # now you'll get SIGKILL when the parent process ends
+
+  my $v = &get_pdeathsig;
+  # get the signal that will be sent when the parent process ends
 
 =head1 DESCRIPTION
 
-Stub documentation for Linux::Pdeathsig, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
-
-Blah blah blah.
+This simple module provides two functions to set or get the signal that
+the linux kernel will send when the parent process dies.  get_pdeathsig
+returns 0 when no signal has been set.  set_pdeathsig(0) will clear the
+setting.  Both functions croak on error.
 
 =head2 EXPORT
 
-None by default.
-
-
+set_pdeathsig, get_pdeathsig by default.
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+prctl(2) Linux man page.
 
 =head1 AUTHOR
 

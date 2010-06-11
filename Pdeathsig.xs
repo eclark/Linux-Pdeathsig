@@ -4,7 +4,6 @@
 
 #include "ppport.h"
 
-#include <sys/syscall.h>
 #include <sys/prctl.h>
 
 #include "const-c.inc"
