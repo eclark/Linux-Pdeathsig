@@ -5,7 +5,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 6;
+use Test::More tests => 3;
 BEGIN { use_ok('Linux::Pdeathsig') };
 
 #########################
@@ -13,9 +13,7 @@ BEGIN { use_ok('Linux::Pdeathsig') };
 # Insert your test code below, the Test::More module is use()ed here so read
 # its man page ( perldoc Test::More ) for help writing this test script.
 
-ok(&Linux::Pdeathsig::SYS_prctl,'got SYS_prctl constant');
-ok(&Linux::Pdeathsig::PR_SET_PDEATHSIG,'got PR_SET_PDEATHSIG constant');
-ok(&Linux::Pdeathsig::PR_GET_PDEATHSIG,'got PR_GET_PDEATHSIG constant');
-
-ok(defined set_pdeathsig(10),'set_pdeathsig succeeded');
+my $rv = set_pdeathsig(10);
+ok(defined $rv && $rv == 0,'set_pdeathsig succeeded');
 ok(get_pdeathsig() == 10,'get_pdeathsig returned 10');
+

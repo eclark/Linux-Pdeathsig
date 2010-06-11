@@ -61,26 +61,6 @@ XSLoader::load('Linux::Pdeathsig', $XS_VERSION);
 
 # Preloaded methods go here.
 
-sub set_pdeathsig {
-    my $signal = shift;
-    croak 'no signal defined for set_pdeathsig' if !defined $signal;
-
-    my $ret = syscall(&SYS_prctl,&PR_SET_PDEATHSIG,$signal); 
-    if ($ret == -1 || $ret == &EINVAL) {
-        croak 'set_pdeathsig: ' . $!;
-    }
-    return $ret;
-}
-
-sub get_pdeathsig {
-    my $value = "    ";
-    my $ret = syscall(&SYS_prctl,&PR_GET_PDEATHSIG,$value);
-    if ($ret == -1 || $ret == &EINVAL) {
-        croak 'get_pdeathsig: ' . $!;
-    }
-    return unpack('i',$value);
-}
-
 # Autoload methods go after =cut, and are processed by the autosplit program.
 
 1;
