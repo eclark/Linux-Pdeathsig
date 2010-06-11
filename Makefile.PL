@@ -20,7 +20,7 @@ if  (eval {require ExtUtils::Constant; 1}) {
   # you will need to use the generated const-c.inc and const-xs.inc
   # files to replace their "fallback" counterparts before distributing your
   # changes.
-  my @names = (qw(SYS_prctl PR_SET_PDEATHSIG PR_GET_PDEATHSIG EINVAL));
+  my @names = (qw());
   ExtUtils::Constant::WriteConstants(
                                      NAME         => 'Linux::Pdeathsig',
                                      NAMES        => \@names,

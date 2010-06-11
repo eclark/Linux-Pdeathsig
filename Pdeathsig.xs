@@ -9,12 +9,12 @@
 
 #include "const-c.inc"
 
-MODULE = Linux::Pdeathsig		PACKAGE = Linux::Pdeathsig		
+MODULE = Linux::Pdeathsig		PACKAGE = Linux::Pdeathsig		PREFIX = prpl_
 
 INCLUDE: const-xs.inc
 
 int
-set_pdeathsig(signum)
+prpl_set_pdeathsig(signum)
     unsigned long signum
   INIT:
     char *errmsg;
@@ -28,7 +28,7 @@ set_pdeathsig(signum)
     RETVAL 
 
 SV *
-get_pdeathsig()
+prpl_get_pdeathsig()
   INIT:
     int rv;
     int signum;
