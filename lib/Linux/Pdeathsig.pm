@@ -73,11 +73,12 @@ sub set_pdeathsig {
 }
 
 sub get_pdeathsig {
-    my $ret = syscall(&SYS_prctl,&PR_GET_PDEATHSIG);
-    if ($ret == -1) {
+    my $value = "    ";
+    my $ret = syscall(&SYS_prctl,&PR_GET_PDEATHSIG,$value);
+    if ($ret == -1 || $ret == &EINVAL) {
         croak 'get_pdeathsig: ' . $!;
     }
-    return $ret;
+    return unpack('i',$value);
 }
 
 # Autoload methods go after =cut, and are processed by the autosplit program.

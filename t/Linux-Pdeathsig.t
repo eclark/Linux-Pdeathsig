@@ -5,7 +5,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 4;
+use Test::More tests => 6;
 BEGIN { use_ok('Linux::Pdeathsig') };
 
 #########################
@@ -17,3 +17,5 @@ ok(&Linux::Pdeathsig::SYS_prctl,'got SYS_prctl constant');
 ok(&Linux::Pdeathsig::PR_SET_PDEATHSIG,'got PR_SET_PDEATHSIG constant');
 ok(&Linux::Pdeathsig::PR_GET_PDEATHSIG,'got PR_GET_PDEATHSIG constant');
 
+ok(defined set_pdeathsig(10),'set_pdeathsig succeeded');
+ok(get_pdeathsig() == 10,'get_pdeathsig returned 10');
