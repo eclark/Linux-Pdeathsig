@@ -29,7 +29,7 @@ our @EXPORT = qw(
     get_pdeathsig
 );
 
-our $VERSION = '0.00_02';
+our $VERSION = '0.10';
 our $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;  # see L<perlmodstyle>
 
